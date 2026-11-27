@@ -1,0 +1,16 @@
+services:
+  shopping-agent:
+    build: .
+    container_name: shopping_cart_agent
+    ports:
+      - "8501:8501"
+    env_file:
+      - .env
+    environment:
+      - DB_PATH=/app/resources/store.db
+    volumes:
+      - store_data:/app/resources
+    restart: unless-stopped
+
+volumes:
+  store_data:
